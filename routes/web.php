@@ -9,6 +9,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\SubscriptionChangeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UsageController;
+use App\Http\Controllers\UsageHistoryController;
 use App\Http\Controllers\MerchantDashboardController;
 use Illuminate\Support\Facades\Route;
 
