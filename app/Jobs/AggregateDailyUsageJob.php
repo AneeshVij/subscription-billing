@@ -6,10 +6,13 @@ use App\Models\DailyUsage;
 use App\Models\UsageEvent;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class AggregateDailyUsageJob implements ShouldQueue
 {
-    use Queueable;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
         public int $merchantId,
@@ -57,8 +60,7 @@ class AggregateDailyUsageJob implements ShouldQueue
                     function ($event) {
                         return $event->customer_id
                             . '|'
-                            . $event->usage_date
-                                ->format('Y-m-d');
+                            . $event->usage_date->format('Y-m-d');
                     }
                 );
 
@@ -93,3 +95,4 @@ class AggregateDailyUsageJob implements ShouldQueue
         );
     }
 }
+
